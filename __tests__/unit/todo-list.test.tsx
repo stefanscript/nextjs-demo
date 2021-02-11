@@ -20,4 +20,10 @@ describe("Todo list Page", () => {
 
         expect(screen.getByTestId("list-item-1")).toBeInTheDocument();
     });
+
+    it("the list item should item 1 text", () => {
+        render(<TodoListPage />);
+
+        expect(screen.getByText("item 1")).toBeInTheDocument();
+    });
 })
