@@ -10,11 +10,13 @@ describe('Given I am on the todo-list', () => {
 
       const itemNameInput = screen.getByTestId('item-name-input');
       const addItemButton = screen.getByTestId('add-item-button');
+      let firstItem = screen.getByTestId('list-item-1');
+
+      expect(firstItem).not.toHaveTextContent('item 1');
 
       userEvent.type(itemNameInput, 'item1');
       userEvent.click(addItemButton);
 
-      let firstItem = screen.getByTestId('list-item-1');
       expect(firstItem).toHaveTextContent('item 1');
     });
   });

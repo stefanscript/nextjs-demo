@@ -24,6 +24,12 @@ describe("Todo list Page", () => {
     it("the list item should item 1 text", () => {
         render(<TodoListPage />);
 
-        expect(screen.getByText("item 1")).toBeInTheDocument();
+        expect(screen.getByTestId("list-item-1")).toHaveTextContent("item 1");
     });
+
+    it("by default the list is empty", () => {
+        render(<TodoListPage />);
+
+        expect(screen.getByTestId("list-item-1")).toHaveTextContent("");
+    })
 })
