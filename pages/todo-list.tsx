@@ -1,10 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 const TodoListPage = () => {
-  return <div>
-    <div data-testid={"item-name-input"} />;
-    <div data-testid={"add-item-button"} />;
-    <div data-testid={"list-item-1"}>item 1</div>;
-  </div>
+    const [item, setItem] = useState("");
+
+    function onClickHandler() {
+      setItem("item 1")
+    }
+
+    return (
+        <div>
+            <div data-testid={"item-name-input"}/>
+            <div data-testid={"add-item-button"} onClick={onClickHandler}/>
+            <div data-testid={"list-item-1"}>{item}</div>
+        </div>
+    )
 };
 export default TodoListPage;

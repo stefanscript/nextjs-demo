@@ -14,7 +14,7 @@ describe('Given I am on the todo-list', () => {
 
       expect(firstItem).not.toHaveTextContent('item 1');
 
-      userEvent.type(itemNameInput, 'item1');
+      userEvent.type(itemNameInput, 'item 1');
       userEvent.click(addItemButton);
 
       expect(firstItem).toHaveTextContent('item 1');
