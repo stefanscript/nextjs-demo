@@ -16,8 +16,10 @@ describe('Given I am on the todo-list', () => {
 
       userEvent.type(itemNameInput, 'item 1');
       userEvent.click(addItemButton);
+      userEvent.type(itemNameInput, 'item 2 latest');
+      userEvent.click(addItemButton);
 
-      expect(firstItem).toHaveTextContent('item 1');
+      expect(firstItem).toHaveTextContent('item 2 latest');
     });
   });
 });
