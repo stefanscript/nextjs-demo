@@ -52,4 +52,17 @@ describe("Todo list Page", () => {
         expect(item1).toHaveTextContent('item 1');
         expect(item2).toHaveTextContent('item 2');
     });
+
+    it("clicking the button should update the item with the text from the input", () => {
+        render(<TodoListPage />);
+        const item1 = screen.getByTestId("list-item-1");
+        const itemNameInput = screen.getByTestId('item-name-input');
+        const addButton = screen.getByTestId('add-item-button');
+
+        let text = "item 3";
+        userEvent.type(itemNameInput, text);
+        userEvent.click(addButton);
+
+        expect(item1).toHaveTextContent(text);
+    });
 })
