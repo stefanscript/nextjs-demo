@@ -36,4 +36,20 @@ describe("Todo list Page", () => {
 
         expect(screen.getByTestId("list-item-1")).toHaveTextContent('item 1');
     });
+
+    it("should add two items if two items are entered", () => {
+        render(<TodoListPage />);
+        const item1 = screen.getByTestId("list-item-1");
+        const item2 = screen.getByTestId("list-item-2");
+        const itemNameInput = screen.getByTestId('item-name-input');
+        const addButton = screen.getByTestId('add-item-button');
+
+        userEvent.type(itemNameInput, "item 1");
+        userEvent.click(addButton);
+        userEvent.type(itemNameInput, "item 2");
+        userEvent.click(addButton);
+
+        expect(item1).toHaveTextContent('item 1');
+        expect(item2).toHaveTextContent('item 2');
+    });
 })
