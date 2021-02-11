@@ -6,6 +6,12 @@ describe("Todo list Page", () => {
     it("renders the item name input", () => {
         render(<TodoListPage />)
 
-        expect(screen.getByTestId("list-item-1")).toBeInTheDocument();
+        expect(screen.getByTestId("item-name-input")).toBeInTheDocument();
+    });
+
+    it("renders the item button", () => {
+        render(<TodoListPage />)
+
+        expect(screen.getByTestId("add-item-button")).toBeInTheDocument();
     });
 })
