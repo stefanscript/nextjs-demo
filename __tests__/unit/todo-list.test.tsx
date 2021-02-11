@@ -14,4 +14,10 @@ describe("Todo list Page", () => {
 
         expect(screen.getByTestId("add-item-button")).toBeInTheDocument();
     });
+
+    it("renders a list item", () => {
+        render(<TodoListPage />)
+
+        expect(screen.getByTestId("list-item-1")).toBeInTheDocument();
+    });
 })
