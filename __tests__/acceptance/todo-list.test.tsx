@@ -40,12 +40,13 @@ describe('Given I am on the todo-list', () => {
         userEvent.type(itemNameInput, item2Text);
         userEvent.click(addItemButton);
 
-        const item1 = screen.getByTestId("list-item-1");
+        let item1 = screen.getByTestId("list-item-1");
         const removeItemButton = within(item1).getByRole('button', { name: "Remove" });
 
         userEvent.click(removeItemButton);
 
-        expect(item1).not.toBeInTheDocument();
+        item1 = screen.getByTestId("list-item-1");
+        expect(item1).toHaveTextContent(item2Text);
       });
     });
   });

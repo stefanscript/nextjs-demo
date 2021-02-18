@@ -12,6 +12,10 @@ const TodoListPage = () => {
         setItemName(e.target.value)
     }
 
+    function onRemoveHandler() {
+        setItems([]);
+    }
+
     return (
         <div>
             <input name={"item-name-input"} type="text" data-testid={"item-name-input"} onChange={onChangeHandler}/>
@@ -19,7 +23,7 @@ const TodoListPage = () => {
             {items.map((item, i) => (
                 <div key={item} data-testid={`list-item-${i + 1}`}>
                     {item}
-                    <button>Remove</button>
+                    <button onClick={onRemoveHandler}>Remove</button>
                 </div>
             ))}
         </div>

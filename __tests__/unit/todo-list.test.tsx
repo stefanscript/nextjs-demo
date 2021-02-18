@@ -1,5 +1,5 @@
 import React from "react";
-import {render, screen} from "@testing-library/react";
+import {render, screen, within} from "@testing-library/react";
 import TodoListPage from "../../pages/todo-list";
 import userEvent from "@testing-library/user-event";
 
@@ -90,5 +90,24 @@ describe("Todo list Page", () => {
         userEvent.click(item1RemoveButton);
 
         expect(item1RemoveButton).not.toBeInTheDocument();
+    });
+
+    it("should only remove item clicked", () => {
+        render(<TodoListPage />);
+
+        const itemNameInput = screen.getByTestId('item-name-input');
+        const addButton = screen.getByRole("button", { name: "Add" });
+
+        userEvent.type(itemNameInput, "item 1");
+        userEvent.click(addButton);
+        userEvent.type(itemNameInput, "item 2");
+        userEvent.click(addButton);
+
+        const item1 = screen.getByTestId("list-item-1");
+        const item1RemoveButton = within(item1).getByRole('button', { name: 'Remove' });
+        userEvent.click(item1RemoveButton);
+
+        expect(item1RemoveButton).not.toBeInTheDocument();
+        expect(screen.getByTestId("list-item-1")).toBeInTheDocument();
     });
 })
