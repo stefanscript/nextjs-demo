@@ -1,20 +1,24 @@
 import React, {useState} from 'react';
 
 const TodoListPage = () => {
-    const [item1, setItem1] = useState("");
-    const [item2, setItem2] = useState("");
+    const [itemName, setItemName] = useState<string>("");
+    const [items, setItems] = useState<string[]>([]);
 
-  function onClickHandler() {
-      setItem1("item 1");
-      setItem2("item 2");
-  }
+    function onClickHandler() {
+        setItems([...items, itemName])
+    }
+
+    function onChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
+        setItemName(e.target.value)
+    }
 
     return (
         <div>
-            <div data-testid={"item-name-input"}/>
+            <input name={"item-name-input"} type="text" data-testid={"item-name-input"} onChange={onChangeHandler}/>
             <div data-testid={"add-item-button"} onClick={onClickHandler}/>
-            <div data-testid={"list-item-1"}>{item1}</div>
-            <div data-testid={"list-item-2"}>{item2}</div>
+            {items.map((item, i) => (
+                <div key={item} data-testid={`list-item-${i + 1}`}>{item}</div>
+            ))}
         </div>
     )
 };
