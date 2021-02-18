@@ -8,13 +8,12 @@ describe('Given I am on the todo-list', () => {
     it('Then it should display second item below first item', () => {
       render(<TodoListPage />);
       const itemNameInput1 = 'item-name-input';
-      const addItemButton1 = 'add-item-button';
       const item1Text = 'item 1';
       const item2Text = 'item 2 latest';
       const item2Id = 'list-item-2';
 
       const itemNameInput = screen.getByTestId(itemNameInput1);
-      const addItemButton = screen.getByTestId(addItemButton1);
+      const addItemButton = screen.getByRole('button', { name: "Add" });
 
       userEvent.type(itemNameInput, item1Text);
       userEvent.click(addItemButton);

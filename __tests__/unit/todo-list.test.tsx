@@ -13,7 +13,7 @@ describe("Todo list Page", () => {
     it("renders the item button", () => {
         render(<TodoListPage />)
 
-        expect(screen.getByTestId("add-item-button")).toBeInTheDocument();
+        expect(screen.getByRole("button", { name: "Add" })).toBeInTheDocument();
     });
 
     it("by default the list is empty", () => {
@@ -25,7 +25,7 @@ describe("Todo list Page", () => {
     it("clicking the add button updates item 1", () => {
         render(<TodoListPage />);
         const itemNameInput = screen.getByTestId('item-name-input');
-        const addItemButton = screen.getByTestId('add-item-button');
+        const addItemButton = screen.getByRole("button", { name: "Add" });
 
         userEvent.type(itemNameInput, "item 1");
         userEvent.click(addItemButton);
@@ -36,7 +36,7 @@ describe("Todo list Page", () => {
     it("should add two items if two items are entered", () => {
         render(<TodoListPage />);
         const itemNameInput = screen.getByTestId('item-name-input');
-        const addButton = screen.getByTestId('add-item-button');
+        const addButton = screen.getByRole("button", { name: "Add" });
 
         userEvent.type(itemNameInput, "item 1");
         userEvent.click(addButton);
@@ -52,7 +52,7 @@ describe("Todo list Page", () => {
     it("clicking the button should update the item with the text from the input", () => {
         render(<TodoListPage />);
         const itemNameInput = screen.getByTestId('item-name-input');
-        const addButton = screen.getByTestId('add-item-button');
+        const addButton = screen.getByRole("button", { name: "Add" });
 
         let text = "item 3";
         userEvent.type(itemNameInput, text);
