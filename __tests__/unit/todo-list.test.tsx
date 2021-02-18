@@ -94,20 +94,20 @@ describe("Todo list Page", () => {
 
     it("should only remove item clicked", () => {
         render(<TodoListPage />);
-
         const itemNameInput = screen.getByTestId('item-name-input');
         const addButton = screen.getByRole("button", { name: "Add" });
 
-        userEvent.type(itemNameInput, "item 1");
+        let item1Text = "item 1";
+        let item2Text = "item 2";
+        userEvent.type(itemNameInput, item1Text);
         userEvent.click(addButton);
-        userEvent.type(itemNameInput, "item 2");
+        userEvent.type(itemNameInput, item2Text);
         userEvent.click(addButton);
-
         const item1 = screen.getByTestId("list-item-1");
         const item1RemoveButton = within(item1).getByRole('button', { name: 'Remove' });
         userEvent.click(item1RemoveButton);
 
-        expect(item1RemoveButton).not.toBeInTheDocument();
+        expect(screen.queryByText(item1Text)).not.toBeInTheDocument();
         expect(screen.getByTestId("list-item-1")).toBeInTheDocument();
     });
 })

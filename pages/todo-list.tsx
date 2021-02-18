@@ -12,8 +12,10 @@ const TodoListPage = () => {
         setItemName(e.target.value)
     }
 
-    function onRemoveHandler() {
-        setItems([]);
+    function onRemoveHandler(i: number) {
+        let x = [...items]
+        x.splice(i, 1);
+        setItems(x);
     }
 
     return (
@@ -23,7 +25,7 @@ const TodoListPage = () => {
             {items.map((item, i) => (
                 <div key={item} data-testid={`list-item-${i + 1}`}>
                     {item}
-                    <button onClick={onRemoveHandler}>Remove</button>
+                    <button onClick={() => onRemoveHandler(i)}>Remove</button>
                 </div>
             ))}
         </div>
