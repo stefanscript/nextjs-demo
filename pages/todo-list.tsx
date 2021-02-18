@@ -15,7 +15,7 @@ const TodoListPage = () => {
     return (
         <div>
             <input name={"item-name-input"} type="text" data-testid={"item-name-input"} onChange={onChangeHandler}/>
-            <div data-testid={"add-item-button"} onClick={onClickHandler}/>
+            <div data-testid={"add-item-button"} onClick={onClickHandler}>Add</div>
             {items.map((item, i) => (
                 <div key={item} data-testid={`list-item-${i + 1}`}>{item}</div>
             ))}
