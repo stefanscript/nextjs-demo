@@ -61,4 +61,34 @@ describe("Todo list Page", () => {
         const item1 = screen.getByTestId("list-item-1");
         expect(item1).toHaveTextContent(text);
     });
+
+    it("should have a remove button", () => {
+        render(<TodoListPage />);
+
+        const itemNameInput = screen.getByTestId('item-name-input');
+        const addButton = screen.getByRole("button", { name: "Add" });
+
+        userEvent.type(itemNameInput, "item 1");
+        userEvent.click(addButton);
+
+        const item1RemoveButton = screen.getByRole('button', { name: 'Remove' });
+
+        expect(item1RemoveButton).toBeInTheDocument();
+    });
+
+    it("should remove an item from the list when the adjacent remove button is clicked", () => {
+
+        render(<TodoListPage />);
+
+        const itemNameInput = screen.getByTestId('item-name-input');
+        const addButton = screen.getByRole("button", { name: "Add" });
+
+        userEvent.type(itemNameInput, "item 1");
+        userEvent.click(addButton);
+
+        const item1RemoveButton = screen.getByRole('button', { name: 'Remove' });
+        userEvent.click(item1RemoveButton);
+
+        expect(item1RemoveButton).not.toBeInTheDocument();
+    });
 })
